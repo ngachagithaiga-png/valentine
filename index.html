@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <title>Valentine 💜</title>
 
-<!-- Import Poppins font -->
+<!-- Poppins Font -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
@@ -12,13 +12,13 @@ body {
   margin: 0;
   height: 100vh;
   overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   font-family: 'Poppins', sans-serif;
   background: linear-gradient(270deg, purple, black, white, purple);
   background-size: 600% 600%;
   animation: bgMove 20s ease infinite;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: white;
 }
 
@@ -35,6 +35,7 @@ body {
 
 h1 {
   font-size: 2.5rem;
+  margin-bottom: 20px;
 }
 
 .sharon {
@@ -70,6 +71,10 @@ button {
   background: #444;
   color: white;
   position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  transition: left 0.2s, top 0.2s;
 }
 
 /* FIREWORK PARTICLES */
@@ -105,12 +110,19 @@ noBtn.addEventListener("mouseover", () => {
 
 // YES button clicked
 function yesClicked() {
-  // Replace the container with only the celebration message
-  document.body.innerHTML = `
-    <h1 style="position:absolute;top:40%;width:100%;text-align:center;font-family:'Poppins', sans-serif;">
-      Yaaay! ILYSM bestie 💖💖💖
-    </h1>
-  `;
+  // Remove question and buttons but keep Sharon
+  const container = document.getElementById("screen");
+  container.innerHTML = '<div class="sharon">Sharon 💖</div>';
+
+  // Add celebration message
+  const message = document.createElement("h1");
+  message.style.position = "absolute";
+  message.style.top = "40%";
+  message.style.width = "100%";
+  message.style.textAlign = "center";
+  message.style.fontFamily = "'Poppins', sans-serif";
+  message.innerText = "Yaaay! ILYSM bestie 💖💖💖";
+  document.body.appendChild(message);
 
   // Launch multiple fireworks
   for (let i = 0; i < 6; i++) {
@@ -156,6 +168,7 @@ function createFirework() {
 
 </body>
 </html>
+
 
 
 
