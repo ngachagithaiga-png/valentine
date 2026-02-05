@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <title>Valentine 💜</title>
 
+<!-- Import Poppins font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+
 <style>
 body {
   margin: 0;
@@ -12,7 +15,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: Arial, sans-serif;
+  font-family: 'Poppins', sans-serif;
   background: linear-gradient(270deg, purple, black, white, purple);
   background-size: 600% 600%;
   animation: bgMove 20s ease infinite;
@@ -82,9 +85,9 @@ button {
 
 <body>
 
-<div class="container">
+<div class="container" id="screen">
   <div class="sharon">Sharon 💖</div>
-  <h1>Will you be my Valentine?</h1>
+  <h1 id="question">Will you be my Valentine?</h1>
   <button class="yes" onclick="yesClicked()">Yes 💕</button>
   <button class="no" id="noBtn">No 😅</button>
 </div>
@@ -92,6 +95,7 @@ button {
 <script>
 const noBtn = document.getElementById("noBtn");
 
+// NO button runs away
 noBtn.addEventListener("mouseover", () => {
   const x = Math.random() * (window.innerWidth - 100);
   const y = Math.random() * (window.innerHeight - 50);
@@ -99,15 +103,22 @@ noBtn.addEventListener("mouseover", () => {
   noBtn.style.top = y + "px";
 });
 
-/* REALISTIC MULTI-COLOR FIREWORKS */
+// YES button clicked
 function yesClicked() {
-  document.body.innerHTML += "<h1 style='position:absolute;top:40%;width:100%;text-align:center;'>Yaaay! ILYSM bestie 💖💖💖</h1>";
+  // Replace the container with only the celebration message
+  document.body.innerHTML = `
+    <h1 style="position:absolute;top:40%;width:100%;text-align:center;font-family:'Poppins', sans-serif;">
+      Yaaay! ILYSM bestie 💖💖💖
+    </h1>
+  `;
 
+  // Launch multiple fireworks
   for (let i = 0; i < 6; i++) {
     setTimeout(createFirework, i * 400);
   }
 }
 
+// Firework function
 function createFirework() {
   const colors = ["red", "gold", "cyan", "lime", "magenta", "orange", "deepskyblue"];
   const x = Math.random() * window.innerWidth;
@@ -145,5 +156,6 @@ function createFirework() {
 
 </body>
 </html>
+
 
 
