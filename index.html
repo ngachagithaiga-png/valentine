@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Valentine 💖</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #5f2c82, #000000, #ffffff);
+      font-family: Arial, sans-serif;
+      color: white;
+      text-align: center;
+    }
+    button {
+      padding: 15px 25px;
+      font-size: 18px;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      margin: 10px;
+    }
+    .yes {
+      background: #ff4d6d;
+      color: white;
+    }
+    .no {
+      background: #555;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <h1>Will you be my Valentine? 💘</h1>
+    <button class="yes" onclick="yesClicked()">Yes 💕</button>
+    <button class="no" onclick="shake()">No 😅</button>
+  </div>
+
+  <script>
+    function yesClicked() {
+      document.body.innerHTML =
+        "<h1>Yaaay! ILYSM bestie 💖💖💖</h1>";
+    }
+
+    function shake() {
+      document.body.style.animation = "shake 0.4s";
+      setTimeout(() => document.body.style.animation = "", 400);
+    }
+  </script>
+</body>
+</html>
