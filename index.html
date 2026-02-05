@@ -1,150 +1,149 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Be My Valentine 💘</title>
+<meta charset="UTF-8">
+<title>Valentine 💜</title>
 
-  <style>
-    body {
-      background: linear-gradient(135deg, #2b1055, #000000, #f5f5f5);
-      font-family: 'Comic Sans MS', cursive, sans-serif;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      margin: 0;
-      overflow: hidden;
-    }
+<style>
+body {
+  margin: 0;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(270deg, purple, black, white, purple);
+  background-size: 600% 600%;
+  animation: bgMove 20s ease infinite;
+  color: white;
+}
 
-    .card {
-      background: white;
-      padding: 40px;
-      border-radius: 20px;
-      text-align: center;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-      position: relative;
-      width: 420px;
-      z-index: 2;
-    }
+@keyframes bgMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
 
-    h1 {
-      color: #8e2de2;
-      font-size: 2.2em;
-    }
+.container {
+  text-align: center;
+  z-index: 2;
+}
 
-    .buttons {
-      margin-top: 30px;
-    }
+h1 {
+  font-size: 2.5rem;
+}
 
-    button {
-      font-size: 1.2em;
-      padding: 12px 25px;
-      border: none;
-      border-radius: 30px;
-      cursor: pointer;
-    }
+.sharon {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #ffb3ff;
+  animation: float 3s ease-in-out infinite;
+  text-shadow: 0 0 10px pink, 0 0 20px purple;
+}
 
-    #yes {
-      background: #8e2de2;
-      color: white;
-      margin-right: 15px;
-    }
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+  100% { transform: translateY(0); }
+}
 
-    #no {
-      background: #ccc;
-      color: #333;
-      position: absolute;
-    }
+button {
+  padding: 15px 30px;
+  font-size: 20px;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  margin: 10px;
+  position: relative;
+}
 
-    .particle {
-      position: absolute;
-      font-size: 22px;
-      pointer-events: none;
-      animation: explode 2s ease-out forwards;
-    }
+.yes {
+  background: #ff4d6d;
+  color: white;
+}
 
-    @keyframes explode {
-      from {
-        transform: translate(0, 0) scale(1);
-        opacity: 1;
-      }
-      to {
-        transform: translate(var(--x), var(--y)) scale(1.5);
-        opacity: 0;
-      }
-    }
+.no {
+  background: #444;
+  color: white;
+  position: absolute;
+}
 
-    .shake {
-      animation: shake 0.4s;
-    }
-
-    @keyframes shake {
-      0% { transform: translate(0); }
-      25% { transform: translate(-8px, 5px); }
-      50% { transform: translate(8px, -5px); }
-      75% { transform: translate(-8px, -5px); }
-      100% { transform: translate(0); }
-    }
-  </style>
+/* FIREWORK PARTICLES */
+.particle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  pointer-events: none;
+}
+</style>
 </head>
+
 <body>
 
-  <div class="card" id="card">
-    <h1 id="title">Sharon, will you be my Valentine? 💘</h1>
+<div class="container">
+  <div class="sharon">Sharon 💖</div>
+  <h1>Will you be my Valentine?</h1>
+  <button class="yes" onclick="yesClicked()">Yes 💕</button>
+  <button class="no" id="noBtn">No 😅</button>
+</div>
 
-    <div class="buttons" id="buttons">
-      <button id="yes" onclick="sayYes()">YES 💖</button>
-      <button id="no" onmouseover="moveNo()">NO 🙃</button>
-    </div>
-  </div>
+<script>
+const noBtn = document.getElementById("noBtn");
 
-  <script>
-    function moveNo() {
-      const noBtn = document.getElementById("no");
+noBtn.addEventListener("mouseover", () => {
+  const x = Math.random() * (window.innerWidth - 100);
+  const y = Math.random() * (window.innerHeight - 50);
+  noBtn.style.left = x + "px";
+  noBtn.style.top = y + "px";
+});
 
-      const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
-      const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+/* REALISTIC MULTI-COLOR FIREWORKS */
+function yesClicked() {
+  document.body.innerHTML += "<h1 style='position:absolute;top:40%;width:100%;text-align:center;'>Yaaay! ILYSM bestie 💖💖💖</h1>";
 
-      noBtn.style.left = x + "px";
-      noBtn.style.top = y + "px";
+  for (let i = 0; i < 6; i++) {
+    setTimeout(createFirework, i * 400);
+  }
+}
 
-      document.body.classList.add("shake");
-      setTimeout(() => document.body.classList.remove("shake"), 400);
-    }
+function createFirework() {
+  const colors = ["red", "gold", "cyan", "lime", "magenta", "orange", "deepskyblue"];
+  const x = Math.random() * window.innerWidth;
+  const y = Math.random() * window.innerHeight / 2;
 
-    function sayYes() {
-      document.getElementById("title").innerText =
-        "ILYSM bestie 💖💕💘😍✨";
-      document.getElementById("buttons").style.display = "none";
+  for (let i = 0; i < 40; i++) {
+    const particle = document.createElement("div");
+    particle.className = "particle";
+    particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+    particle.style.left = x + "px";
+    particle.style.top = y + "px";
 
-      fireworks();
+    const angle = Math.random() * 2 * Math.PI;
+    const speed = Math.random() * 6 + 2;
+    const dx = Math.cos(angle) * speed;
+    const dy = Math.sin(angle) * speed;
 
-      setTimeout(() => {
-        window.location.href =
-          "mailto:ngachagithaiga@gmail.com?subject=Valentine%20Accepted%20💖&body=YES!!!%20I%20will%20be%20your%20Valentine%20😍";
-      }, 2500);
-    }
+    document.body.appendChild(particle);
 
-    function fireworks() {
-      const emojis = ["💖", "💘", "🎆", "✨", "💕", "😍"];
+    let life = 0;
+    const interval = setInterval(() => {
+      life++;
+      particle.style.left = particle.offsetLeft + dx + "px";
+      particle.style.top = particle.offsetTop + dy + life * 0.3 + "px";
+      particle.style.opacity = 1 - life / 40;
 
-      for (let i = 0; i < 45; i++) {
-        const p = document.createElement("div");
-        p.className = "particle";
-        p.innerText = emojis[Math.floor(Math.random() * emojis.length)];
-
-        p.style.left = Math.random() * window.innerWidth + "px";
-        p.style.top = Math.random() * window.innerHeight + "px";
-
-        p.style.setProperty("--x", (Math.random() * 300 - 150) + "px");
-        p.style.setProperty("--y", (Math.random() * 300 - 150) + "px");
-
-        document.body.appendChild(p);
-        setTimeout(() => p.remove(), 2000);
+      if (life > 40) {
+        clearInterval(interval);
+        particle.remove();
       }
-    }
-  </script>
+    }, 16);
+  }
+}
+</script>
 
 </body>
 </html>
+
 
