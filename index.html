@@ -102,7 +102,7 @@ button {
 
 <script>
 // Initialize EmailJS
-emailjs.init("ngachagithaiga@gmail.com"); // Replace with your EmailJS user ID
+emailjs.init("YOUR_USER_ID"); // Replace with your EmailJS user ID
 
 const noBtn = document.getElementById("noBtn");
 
@@ -116,11 +116,14 @@ noBtn.addEventListener("mouseover", () => {
 
 // YES button clicked
 function yesClicked() {
-  // Remove question and buttons but keep Sharon
-  const container = document.getElementById("screen");
-  container.innerHTML = '<div class="sharon">Sharon 💖</div>';
+  const question = document.getElementById("question");
+  const yesBtn = document.querySelector(".yes");
 
-  // Add celebration message
+  // Hide question and YES button
+  question.style.display = "none";
+  yesBtn.style.display = "none";
+
+  // Celebration message
   const message = document.createElement("h1");
   message.style.position = "absolute";
   message.style.top = "40%";
@@ -135,8 +138,8 @@ function yesClicked() {
     setTimeout(createFirework, i * 400);
   }
 
-  // --- Send Email using EmailJS ---
-  emailjs.send("service_vg7hvas", "template_anitfcb", {
+  // --- Send Email via EmailJS ---
+  emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", {
     name: "Sharon",
     message: "Sharon has agreed!"
   })
@@ -185,6 +188,7 @@ function createFirework() {
 
 </body>
 </html>
+
 
 
 
