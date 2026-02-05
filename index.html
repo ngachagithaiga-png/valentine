@@ -19,10 +19,8 @@ body {
   background: linear-gradient(270deg, purple, black, white, purple);
   background-size: 600% 600%;
   animation: bgMove 20s ease infinite;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   color: white;
+  position: relative;
 }
 
 @keyframes bgMove {
@@ -33,6 +31,10 @@ body {
 
 .container {
   text-align: center;
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  transform: translateY(-50%);
   z-index: 2;
 }
 
@@ -62,7 +64,6 @@ button {
   border-radius: 14px;
   cursor: pointer;
   margin: 10px;
-  position: relative;
 }
 
 .yes {
@@ -73,11 +74,12 @@ button {
 .no {
   background: #444;
   color: white;
-  position: absolute;
+  position: fixed; /* fixed relative to viewport */
   top: 60%;
   left: 50%;
   transform: translate(-50%, 0);
   transition: left 0.2s, top 0.2s;
+  z-index: 5;
 }
 
 /* FIREWORK PARTICLES */
@@ -102,14 +104,14 @@ button {
 
 <script>
 // Initialize EmailJS
-emailjs.init("YOUR_USER_ID"); // Replace with your EmailJS user ID
+emailjs.init("YOUR_USER_ID"); // replace with your EmailJS user ID
 
 const noBtn = document.getElementById("noBtn");
 
-// NO button runs away
+// NO button moves when hovered
 noBtn.addEventListener("mouseover", () => {
-  const x = Math.random() * (window.innerWidth - 100);
-  const y = Math.random() * (window.innerHeight - 50);
+  const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+  const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
   noBtn.style.left = x + "px";
   noBtn.style.top = y + "px";
 });
@@ -138,7 +140,7 @@ function yesClicked() {
     setTimeout(createFirework, i * 400);
   }
 
-  // --- Send Email via EmailJS ---
+  // Send email via EmailJS
   emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", {
     name: "Sharon",
     message: "Sharon has agreed!"
@@ -188,6 +190,7 @@ function createFirework() {
 
 </body>
 </html>
+
 
 
 
