@@ -7,6 +7,9 @@
 <!-- Poppins Font -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
 
+<!-- EmailJS SDK -->
+<script src="https://cdn.emailjs.com/sdk/3.2/email.min.js"></script>
+
 <style>
 body {
   margin: 0;
@@ -98,6 +101,9 @@ button {
 </div>
 
 <script>
+// Initialize EmailJS
+emailjs.init("ngachagithaiga@gmail.com"); // Replace with your EmailJS user ID
+
 const noBtn = document.getElementById("noBtn");
 
 // NO button runs away
@@ -128,6 +134,17 @@ function yesClicked() {
   for (let i = 0; i < 6; i++) {
     setTimeout(createFirework, i * 400);
   }
+
+  // --- Send Email using EmailJS ---
+  emailjs.send("service_vg7hvas", "template_anitfcb", {
+    name: "Sharon",
+    message: "Sharon has agreed!"
+  })
+  .then(function(response){
+     console.log("Email sent!", response.status, response.text);
+  }, function(error){
+     console.log("Failed to send email", error);
+  });
 }
 
 // Firework function
@@ -168,6 +185,7 @@ function createFirework() {
 
 </body>
 </html>
+
 
 
 
